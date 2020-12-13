@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1073926018751",
+    "project_id": "food-lab-7a70e",
+    "storage_bucket": "food-lab-7a70e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073926018751:android:96877af130e60a5a8bd80a",
+        "android_client_info": {
+          "package_name": "com.appsbymuk.food_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073926018751-mhpp6jklntegcnfcnmp7tm5sn9up7c5s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appsbymuk.food_shop",
+            "certificate_hash": "b4d732684667e07de5c78db35a1a96069510f688"
+          }
+        },
+        {
+          "client_id": "1073926018751-kkf6lcicr8gqhettge18d2lvueb91j2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1OhX075rBiITZsGNsutpPWj1RRiTzUMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073926018751-kkf6lcicr8gqhettge18d2lvueb91j2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
