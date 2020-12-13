@@ -26,25 +26,21 @@ class _CategoriesState extends State<Categories> {
           )
         ],
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        child: GridView.count(
-          shrinkWrap: false,
-          primary: false,
-          crossAxisCount: 2,
-          mainAxisSpacing: 20,
-          childAspectRatio: 0.8,
-          crossAxisSpacing: 20,
-          children: widget.list
-              .map((e) =>
-              ProductContainer(
-                image: e.image,
-                name: e.name,
-                price: e.price,
-              )
-          ).toList(),
-        ),
+      body: GridView.count(
+        shrinkWrap: false,
+        primary: false,
+        crossAxisCount: 2,
+        mainAxisSpacing: 20,
+        childAspectRatio: 0.8,
+        crossAxisSpacing: 20,
+        children: widget.list
+            .map((e) =>
+            ProductContainer(
+              image: e.image,
+              name: e.name,
+              price: e.price,
+            )
+        ).toList(),
       ),
     );
   }

@@ -225,8 +225,8 @@ Future<void> getBurgerCategoryList() async{
   List<FoodCategoryModel> newBurgerCategoryList= [];
   QuerySnapshot querySnapshot =
       await FirebaseFirestore
-          .instance.collection("foodCategory")
-          .doc('vByfjdcoQ9RKQ4gKY13g')
+          .instance.collection("foodCategories")
+          .doc('Cf6G7Bhwpz6XGtzJhcTd')
           .collection('burger')
           .get();
 
@@ -248,30 +248,30 @@ get throwBurgerCategoryList{
 
 
 //TODO: PIZZA CATEGORY ITEMS
-
-  List<FoodCategoryModel> pizzaCategoryList= [];
-  FoodCategoryModel pizzaCategoryModel;
-
-  Future<void> getPizzaCategoryList() async{
-    List<FoodCategoryModel> newPizzaCategoryList= [];
-    QuerySnapshot querySnapshot =
-    await FirebaseFirestore.instance.collection("foodCategory").doc('vByfjdcoQ9RKQ4gKY13g').collection('pizza').get();
-
-    querySnapshot.docs.forEach((element) {
-      pizzaCategoryModel = FoodCategoryModel(
-          image: element.data()['image'],
-          name: element.data()['name'],
-          price: element.data()['price']
-      );
-      print(pizzaCategoryModel.name);
-      newPizzaCategoryList.add(burgerCategoryModel);
-      pizzaCategoryList = newPizzaCategoryList;
-    });
-
-  }
-  get throwPizzaCategoryList{
-    return pizzaCategoryList;
-  }
+//
+//   List<FoodCategoryModel> pizzaCategoryList= [];
+//   FoodCategoryModel pizzaCategoryModel;
+//
+//   Future<void> getPizzaCategoryList() async{
+//     List<FoodCategoryModel> newPizzaCategoryList= [];
+//     QuerySnapshot querySnapshot =
+//     await FirebaseFirestore.instance.collection("foodCategory").doc('vByfjdcoQ9RKQ4gKY13g').collection('pizza').get();
+//
+//     querySnapshot.docs.forEach((element) {
+//       pizzaCategoryModel = FoodCategoryModel(
+//           image: element.data()['image'],
+//           name: element.data()['name'],
+//           price: element.data()['price']
+//       );
+//       print(pizzaCategoryModel.name);
+//       newPizzaCategoryList.add(burgerCategoryModel);
+//       pizzaCategoryList = newPizzaCategoryList;
+//     });
+//
+//   }
+//   get throwPizzaCategoryList{
+//     return pizzaCategoryList;
+//   }
 
 
 

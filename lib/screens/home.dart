@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
             onTap: (){
               Navigator.of(context)
                   .push(
-                  MaterialPageRoute(builder: (_)=>Categories(
+                  MaterialPageRoute(builder: (context)=>Categories(
                     list: burgerCategoryList,
                   ))
               );
@@ -155,8 +155,8 @@ class _HomePageState extends State<HomePage> {
     burgerCategoryList = provider.throwBurgerCategoryList;
 
     //TODO: pizza category list  provider
-    provider.getPizzaCategory();
-    pizzaCategoryList = provider.throwPizzaCategoryList;
+    // provider.getPizzaCategory();
+    // pizzaCategoryList = provider.throwPizzaCategoryList;
 
 
     return Scaffold(
