@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:food_shop/models/cart_model.dart';
 import 'package:food_shop/models/category_model.dart';
 import 'package:food_shop/models/food_category_model.dart';
 import 'package:food_shop/models/food_model.dart';
@@ -248,30 +249,91 @@ get throwBurgerCategoryList{
 
 
 //TODO: PIZZA CATEGORY ITEMS
-//
-//   List<FoodCategoryModel> pizzaCategoryList= [];
-//   FoodCategoryModel pizzaCategoryModel;
-//
-//   Future<void> getPizzaCategoryList() async{
-//     List<FoodCategoryModel> newPizzaCategoryList= [];
-//     QuerySnapshot querySnapshot =
-//     await FirebaseFirestore.instance.collection("foodCategory").doc('vByfjdcoQ9RKQ4gKY13g').collection('pizza').get();
-//
-//     querySnapshot.docs.forEach((element) {
-//       pizzaCategoryModel = FoodCategoryModel(
-//           image: element.data()['image'],
-//           name: element.data()['name'],
-//           price: element.data()['price']
-//       );
-//       print(pizzaCategoryModel.name);
-//       newPizzaCategoryList.add(burgerCategoryModel);
-//       pizzaCategoryList = newPizzaCategoryList;
-//     });
-//
-//   }
-//   get throwPizzaCategoryList{
-//     return pizzaCategoryList;
-//   }
+
+  List<FoodCategoryModel> pizzaCategoryList= [];
+  FoodCategoryModel pizzaCategoryModel;
+
+  Future<void> getPizzaCategoryList() async{
+    List<FoodCategoryModel> newPizzaCategoryList= [];
+    QuerySnapshot querySnapshot =
+    await FirebaseFirestore.instance.collection("foodCategories").doc('Cf6G7Bhwpz6XGtzJhcTd').collection('pizza').get();
+
+    querySnapshot.docs.forEach((element) {
+      pizzaCategoryModel = FoodCategoryModel(
+          image: element.data()['image'],
+          name: element.data()['name'],
+          price: element.data()['price']
+      );
+      print(pizzaCategoryModel.name);
+      newPizzaCategoryList.add(burgerCategoryModel);
+      pizzaCategoryList = newPizzaCategoryList;
+    });
+
+  }
+  get throwPizzaCategoryList{
+    return pizzaCategoryList;
+  }
+
+
+  //TODO: DESI CATEGORY ITEMS
+
+  List<FoodCategoryModel> desiCategoryList= [];
+  FoodCategoryModel desiCategoryModel;
+
+  Future<void> getDesiCategoryList() async{
+    List<FoodCategoryModel> newDesiCategoryList= [];
+    QuerySnapshot querySnapshot =
+    await FirebaseFirestore.instance.collection("foodCategories").doc('Cf6G7Bhwpz6XGtzJhcTd').collection('desi').get();
+
+    querySnapshot.docs.forEach((element) {
+      desiCategoryModel = FoodCategoryModel(
+          image: element.data()['image'],
+          name: element.data()['name'],
+          price: element.data()['price']
+      );
+      print(desiCategoryModel.name);
+      newDesiCategoryList.add(desiCategoryModel);
+      desiCategoryList = newDesiCategoryList;
+    });
+
+  }
+  get throwDesiCategoryList{
+    return desiCategoryList;
+  }
+
+
+  //TODO:Add to cart provider
+
+ List<CartModel> cartList =[];
+ CartModel cartModel;
+  List<CartModel> newCartList =[];
+
+ void addToCart({
+   @required String image,
+   @required String name,
+   @required int price,
+   @required int quantity})
+ {
+   cartModel = CartModel(image: image, name: name, price: price, quantity: quantity);
+
+   newCartList.add(cartModel);
+   cartList = newCartList;
+
+ }
+get throwCartList{
+   return cartList;
+}
+
+int totalPrice(){
+   int total = 0;
+   cartList.forEach((element) {
+     total += element.price * element.quantity;
+   });
+   return total;
+
+}
+
+
 
 
 

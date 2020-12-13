@@ -1,18 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_shop/provider/my_provider.dart';
+import 'package:food_shop/screens/home.dart';
 import 'package:food_shop/widgets/add_to_cart_btn.dart';
 import 'package:food_shop/widgets/food_detail_image_container.dart';
 import 'package:food_shop/widgets/increment_decrement.dart';
+import 'package:provider/provider.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductDetail extends StatefulWidget {
+  final String image;
+  final String name;
+  final int price;
+
+  const ProductDetail({@required this.image,@required this.name,@required this.price});
+
+  @override
+  _ProductDetailState createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
+
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
+    MyProvider provider = Provider.of<MyProvider>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>HomePage()));
+          },
         ),
       ),
       body: Column(
@@ -21,7 +40,7 @@ class ProductDetail extends StatelessWidget {
 
           //TODO: IMAGE CONTAINER
           Expanded(
-              child: FoodImageContainer(image: "assets/images/2.png",)
+              child: FoodImageContainer(image: widget.image,)
           ),
 
           //TODO: DESCRIPTION CONTAINER
@@ -39,7 +58,7 @@ class ProductDetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("Jumbo Burger",
+                    Text("${widget.name}",
                       style: TextStyle(fontSize: 30,fontWeight: FontWeight.w800),),
                     Text("Any Text",
                         style: TextStyle(fontSize: 20,fontWeight: FontWeight.w300)),
@@ -49,14 +68,51 @@ class ProductDetail extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            IncDec(icon: Icons.remove),
+                            //TODO: DECREMENT BUTTON
+                            GestureDetector(
+                              onTap:(){
+                                setState(() {
+                                  quantity--;
+                                });
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.pink[100],
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: Icon(Icons.remove),
+                              ),
+                            ),
+
                             SizedBox(width: 10,),
-                            Text("1", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700)),
+
+                            //TODO: COUNTER
+                            Text("$quantity", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700)),
+
                             SizedBox(width: 10,),
-                            IncDec(icon: Icons.add),
+
+                            //TODO: INCREMENT BUTTON
+                            GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  quantity++;
+                                });
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.pink[100],
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: Icon(Icons.add),
+                              ),
+                            ),
                           ],
                         ),
-                        Text("\R\s 350", style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),)
+                        Text("\R\s ${widget.price}", style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),)
                       ],
                     ),
 
@@ -67,7 +123,31 @@ class ProductDetail extends StatelessWidget {
                       style:TextStyle(fontSize: 18,)
                     ),
 
-                    AddToCartBtn()
+                    Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      child: RaisedButton(
+                        color: Color(0xFFffcdd2),
+                        onPressed: (){
+                          provider.addToCart(
+                              image: widget.image,
+                              name: widget.name,
+                              price: widget.price,
+                              quantity: quantity);
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add_shopping_cart),
+                            SizedBox(width: 10,),
+                            Text("Add To Cart", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),)
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ))

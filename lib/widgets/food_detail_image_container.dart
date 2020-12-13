@@ -10,7 +10,7 @@ class FoodImageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image(
-        image: AssetImage(image),
+        image: NetworkImage(image),
       ),
     );
   }

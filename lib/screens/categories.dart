@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_shop/models/food_category_model.dart';
+import 'package:food_shop/screens/product_detail.dart';
 import 'package:food_shop/widgets/product_container_homepage.dart';
 
 class Categories extends StatefulWidget {
@@ -39,6 +40,16 @@ class _CategoriesState extends State<Categories> {
               image: e.image,
               name: e.name,
               price: e.price,
+              onTap: (){
+                Navigator
+                    .pushReplacement(context,
+                    MaterialPageRoute(builder: (_)=>ProductDetail(
+                      image: e.image,
+                      price: e.price,
+                      name: e.name,
+                    ))
+                );
+              },
             )
         ).toList(),
       ),

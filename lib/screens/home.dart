@@ -4,6 +4,7 @@ import 'package:food_shop/models/food_category_model.dart';
 import 'package:food_shop/models/food_model.dart';
 import 'package:food_shop/provider/my_provider.dart';
 import 'package:food_shop/screens/categories.dart';
+import 'package:food_shop/screens/product_detail.dart';
 import 'package:food_shop/widgets/category_container.dart';
 import 'package:food_shop/widgets/drawer.dart';
 import 'package:food_shop/widgets/product_container_homepage.dart';
@@ -35,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   //TODO: FOOD CATEGORIES LISTS
   List<FoodCategoryModel> burgerCategoryList = [];
   List<FoodCategoryModel> pizzaCategoryList = [];
+  List<FoodCategoryModel> desiCategoryList = [];
 
 
 
@@ -79,7 +81,14 @@ class _HomePageState extends State<HomePage> {
         children: desiList.map((e) => CategoryContainer(
             image: e.image,
             name: e.name,
-            onTap: (){}
+            onTap: (){
+              Navigator.of(context)
+                  .push(
+                  MaterialPageRoute(builder: (context)=>Categories(
+                    list: desiCategoryList,
+                  ))
+              );
+            }
         )).toList()
     );
   }
@@ -155,8 +164,12 @@ class _HomePageState extends State<HomePage> {
     burgerCategoryList = provider.throwBurgerCategoryList;
 
     //TODO: pizza category list  provider
-    // provider.getPizzaCategory();
-    // pizzaCategoryList = provider.throwPizzaCategoryList;
+    provider.getPizzaCategory();
+    pizzaCategoryList = provider.throwPizzaCategoryList;
+
+    //TODO: desi category list  provider
+    provider.getDesiCategory();
+    pizzaCategoryList = provider.throwDesiCategoryList;
 
 
     return Scaffold(
@@ -224,6 +237,16 @@ class _HomePageState extends State<HomePage> {
                     image: e.image,
                     name: e.name,
                     price: e.price,
+                    onTap: (){
+                      Navigator
+                          .pushReplacement(context,
+                          MaterialPageRoute(builder: (_)=>ProductDetail(
+                            image: e.image,
+                            price: e.price,
+                            name: e.name,
+                          ))
+                      );
+                    },
                   )
               ).toList(),
               // children: [

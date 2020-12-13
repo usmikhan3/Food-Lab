@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_shop/screens/SignUp.dart';
+import 'package:food_shop/screens/cart.dart';
 import 'package:food_shop/screens/home.dart';
 import 'package:food_shop/screens/login.dart';
 import 'package:food_shop/screens/product_detail.dart';

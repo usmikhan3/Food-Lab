@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class IncDec extends StatelessWidget {
 
   final IconData icon;
+  final Color color;
 
-  const IncDec({@required this.icon});
+  const IncDec({@required this.icon, @required this.color});
 
 
   @override
@@ -13,7 +14,7 @@ class IncDec extends StatelessWidget {
       height: 40,
       width: 40,
       decoration: BoxDecoration(
-          color: Colors.pink[100],
+          color: color,
           borderRadius: BorderRadius.circular(10)
       ),
       child: Icon(icon),
