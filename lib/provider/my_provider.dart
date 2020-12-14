@@ -324,6 +324,7 @@ get throwCartList{
    return cartList;
 }
 
+//TODO: TOTAL AMOUNT
 int totalPrice(){
    int total = 0;
    cartList.forEach((element) {
@@ -332,6 +333,20 @@ int totalPrice(){
    return total;
 
 }
+
+//TODO: DELETE CART ITEM
+
+int deleteIndex;
+
+ void getDeleteIndex(int index){
+  deleteIndex = index;
+ }
+
+ void deleteItem(){
+   cartList.removeAt(deleteIndex);
+   notifyListeners();
+ }
+
 
 
 

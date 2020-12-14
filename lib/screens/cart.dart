@@ -17,11 +17,12 @@ class CartScreen extends StatelessWidget {
     @required String image,
     @required int price,
     @required int quantity,
+    @required Function onTap
   }){
     return Row(
       children: [
         Container(
-          height: 180,
+          height: 150,
           width: 150,
           child: CircleAvatar(
             backgroundImage: NetworkImage(image),
@@ -47,7 +48,9 @@ class CartScreen extends StatelessWidget {
                 ),
 
 
-                IconButton(icon: Icon(Icons.close), onPressed: (){})
+                IconButton(icon: Icon(Icons.close),
+                    onPressed: onTap
+                    )
               ],
             )
         )
@@ -72,11 +75,16 @@ class CartScreen extends StatelessWidget {
       body:ListView.builder(
         itemCount: provider.cartList.length,
           itemBuilder:(ctx, index){
+          provider.getDeleteIndex(index);
           return cartItem(
               name: provider.cartList[index].name,
               image: provider.cartList[index].image,
               price: provider.cartList[index].price,
-              quantity: provider.cartList[index].quantity);
+              quantity: provider.cartList[index].quantity,
+              onTap: (){
+                provider.deleteItem();
+              }
+          );
           }
       ),
 
